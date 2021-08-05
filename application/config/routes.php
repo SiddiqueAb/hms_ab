@@ -48,5 +48,11 @@ $route['login'] = 'backend/login/Login';
 $route['logout'] = 'backend/login/Login/user_logout';
 
 
+//test
+$route['ajax_loda_data'] = 'Test/ajaxLoadData';
+$route['insert_data'] = 'Test/insertData';
+$route['delelteData'] = 'Test/delelteData';
+//end test
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

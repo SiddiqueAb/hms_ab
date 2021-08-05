@@ -43,6 +43,29 @@ function alert_check()
 	<?php }
 }
 
+function alert_check_for_delete()
+{
+	$mx = &get_instance();
+
+	if ($success = $mx->session->flashdata('success')) {
+	?>
+		<script>
+			alert("Successfully deleted Selected Item's")
+		</script>
+		<div class="alert alert-sm alert-info alert-dismissible">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			<h4> <?= $success; ?></h4>
+		</div>
+	<?php } ?>
+
+	<?php
+	if ($error = $mx->session->flashdata('error')) {
+		echo '<script>alert("Select At Least One Checkbox")</script>';
+	?>
+
+	<?php }
+}
+
 function pegination_genarate($links)
 {
 	?>
@@ -135,10 +158,17 @@ function get_current_time()
 {
 
 	$date = new DateTime('now', new DateTimezone('Asia/Dhaka'));
-	$current_time = $date->format('Y-m-d H:i:sa') . "\n";
+	$current_time = $date->format('Y-m-d H:i') . "\n";
 	return $current_time;
 }
 
+function get_current_date()
+{
+
+	$date = new DateTime('now', new DateTimezone('Asia/Dhaka'));
+	$current_time = $date->format('Y-m-d') . "\n";
+	return $current_time;
+}
 function get_compare_datetime_year($datetime_1, $date_time_2)
 {
 
@@ -180,6 +210,12 @@ function current_day()
 	return $current_day;
 }
 
+function current_date()
+{
+	$current_day = date('d');
+	return $current_day;
+}
+
 function y_m()
 {
 	$start_date = date('Y-m-');
@@ -202,4 +238,14 @@ function start_date_savings()
 {
 	$start_date = date('Y-m-1 24:00:00');
 	return $start_date;
+}
+
+
+function x_call()
+{
+	$driverInstanse = &get_instance();
+	echo '<pre>';
+	print_r($driverInstanse->input->post());
+	echo "<br>";
+	exit();
 }
