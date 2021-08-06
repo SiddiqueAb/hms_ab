@@ -52,6 +52,8 @@ $route['logout'] = 'backend/login/Login/user_logout';
 $route['ajax_loda_data'] = 'Test/ajaxLoadData';
 $route['insert_data'] = 'Test/insertData';
 $route['delelteData'] = 'Test/delelteData';
+$route['getFromValue'] = 'Test/getFromValue';
+$route['updateData'] = 'Test/updateData';
 //end test
 
 $route['404_override'] = '';

@@ -14,4 +14,21 @@ class M_test extends CI_Model
         $this->db->where($db_id, $id);
         return $this->db->delete($table);
     }
+
+    function get_row_data_multi_conditional($data, $table)
+    {
+        $this->db->where($data);
+        $query = $this->db->get($table);
+        if ($this->db->affected_rows() > 0) {
+            return $query->row();
+        } else {
+            return FALSE;
+        }
+    }
+
+    function updateData($p_id_column, $p_id, $table, $data)
+    {
+        $this->db->where($p_id_column, $p_id);
+        $this->db->update($table, $data);
+    }
 }

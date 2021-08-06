@@ -91,22 +91,12 @@
                </button>
             </div>
             <div class="modal-body">
-               <form class="row" id="recet_table">
-                  <div class="col-sm-12 mt-2">
-                     <input type="text" id="name" placeholder="Name" class="form-control">
-                  </div>
-                  <div class="col-sm-12 mt-2">
-                     <input type="text" id="roll" placeholder="Roll" class="form-control">
-                  </div>
-                  <div class="col-sm-12 mt-2">
-                     <input type="text" id="class_c" placeholder="Class" class="form-control">
-                  </div>
+               <form class="row" id="updateTable">
                </form>
             </div>
-            <div class="modal-footer justify-content-between">
-             
-               <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+
+
+
          </div>
          <!-- /.modal-content -->
       </div>
@@ -213,11 +203,6 @@
       })
 
 
-
-
-
-
-
       // delete Data 
 
       $(document).on("click", ".delete_button", function() {
@@ -245,20 +230,60 @@
       });
 
 
-
+      // getFromvalue
       $(document).on("click", ".edit_button", function() {
-        
+
          $('#update_modal').modal('show');
          var stId = $(this).data("eid");
+         // alert(stId);
          $.ajax({
-            url: ww.co,
-            type:"post",
-            data: {s_id : stId},
-            success: function (data) {
-               
+            url: "<?= base_url('getFromValue') ?>",
+            type: "POST",
+            data: {
+               s_id: stId
+            },
+            success: function(data) {
+               $("#updateTable").html(data);
             }
          });
-         
+
+      });
+
+
+      // saveUpdateData
+      $(document).on("click", "#updateButton", function() {
+
+         var id = $('#s_id').val();
+         var name2 = $('#nameUpdate').val();
+         var roll2 = $('#rollUpdate').val();
+         var class_c2 = $('#class_cUpdate').val();
+         // alert(name);
+         $.ajax({
+            url: "<?= base_url('updateData') ?>",
+            type: "POST",
+            data: {
+               id: id,
+               name2: name2,
+               roll2: roll2,
+               class_c2: class_c2,
+            },
+            success: function(data) {
+
+               console.log(data);
+               // if (data == 1) {
+               //    $('#update_modal').modal('hide');
+               //    loadTable();
+               //    // massege("true", "data Updated Successfull");
+               // } else {
+
+               //    // alert("false", "Data Not Update");
+               // }
+            },
+            error: function(error) {
+               alert("error");
+            }
+         })
+
       });
    });
 </script>
