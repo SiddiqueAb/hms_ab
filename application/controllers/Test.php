@@ -27,11 +27,25 @@ class Test extends CI_Controller
 
     public function ajaxLoadData()
     {
-        $data = $this->M_test->getData('s_status', 'student');
 
+        $limit_per_page = 3;
+        $page = "";
+        $page_no = $this->input->get('page_no');
+        if (isset($page_no)) {
+            $page = $this->input->get('page_no');
+        } else {
+            $page = 1;
+        }
+
+
+        $offset = ($page - 1) * $limit_per_page;
+        $data = $this->M_test->ajaxPagination($offset, $limit_per_page);
+
+        // $total_record = count($this->M_test->getData('s_status', 'student')->result);
+        // x_debug($data->result());
         $ajaxData = '';
-        $si = 1;
-
+        $si = $offset + 1;
+        // $total_page = ceil($total_record / $limit_per_page);
         if ($this->db->affected_rows() > 0) {
 
             foreach ($data->result() as $row) {
@@ -46,6 +60,16 @@ class Test extends CI_Controller
                         </tr>";
                 $si++;
             }
+
+            // $ajaxData .= "<div class='container'>
+            //             <ul class='pagination' id='pagination'>";
+
+
+            // for ($i = 1; $i <= $total_page; $i++) {
+            //     $ajaxData .= "<li><a id='{$i}' href=''>{$i}</a></li>";
+            // }
+
+            // $ajaxData .= "</ul></div>";
             echo $ajaxData;
         } else {
             echo "No Record Found";
@@ -141,6 +165,40 @@ class Test extends CI_Controller
                 $si++;
             }
             echo $ajaxFilterData;
+        } else {
+            echo "No Record Found";
+        }
+    }
+
+    public function ajaxPagination()
+    {
+
+        $limit_per_page = 4;
+        $page = "";
+        $page_no = $this->input->post('page_no');
+        if (isset($page_no)) {
+            $page = $this->input->post('page_no');
+        } else {
+            $page = 1;
+        }
+
+        $offset = ($page - 1) * $limit_per_page;
+        $data = $this->M_test->ajaxPagination("s_status", $offset, $limit_per_page, "student");
+
+        $ajaxPagination = '';
+        $si = 1;
+
+        if ($this->db->affected_rows() > 0) {
+            $ajaxPagination .= "";
+            foreach ($data->result() as $row) {
+
+                $ajaxPagination .= "<ul class='pagination' id='pagination'>
+                    <li><a id='1' href='#'>1</a></li></ul>";
+                $si++;
+            }
+
+            $ajaxPagination .= "";
+            echo $ajaxPagination;
         } else {
             echo "No Record Found";
         }

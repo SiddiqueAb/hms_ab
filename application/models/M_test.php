@@ -47,4 +47,14 @@ class M_test extends CI_Model
 		$query = $this->db->get($table);
 		return $query;
 	}
+    public function ajaxPagination($offset, $limit_per_page)
+    {
+        // $this->db->where($status, '1');
+        // $this->db->limit($offset, $limit_per_page);
+		// return $this->db->get($table);
+
+        $query = $this->db->query("select * FROM student LIMIT {$offset}, {$limit_per_page}");
+      
+		return $query;
+    }
 }

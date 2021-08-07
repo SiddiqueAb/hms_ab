@@ -60,6 +60,7 @@
 	
 	<!--custom css-->
 	<link rel="stylesheet" href="<?php echo base_url('') ?>assets/backend/css/custom.css">
+	<link rel="stylesheet" href="<?php echo base_url('') ?>assets/backend/css/pagination_custom.css">
 	<link rel="stylesheet" href="<?php echo base_url('') ?>assets/backend/css/morris.css">
 	<!-- SweetAlert2 -->
 	<link rel="stylesheet"

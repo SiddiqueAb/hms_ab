@@ -80,9 +80,21 @@
                      </thead>
                      <tbody id="table_data_inserted">
 
+
                      </tbody>
 
+
+
                   </table>
+                  <div class='container'>
+                     <ul class='pagination' id='pagination'>
+                        <?php
+                        $total_page = ceil(10 / 3);
+                        for ($i = 1; $i <= $total_page; $i++) {  ?>
+                           <li><a id="<?= $i ?>" href='#'><?= $i ?></a></li>
+                        <?php } ?>
+                     </ul>
+                  </div>
                </div>
             </div>
          </div>
@@ -120,7 +132,6 @@
    $(document).ready(function() {
 
 
-
       $("#load_data").on('click', function(e) {
 
          $.ajax({
@@ -134,12 +145,13 @@
       })
 
 
-
-
-      function loadTable() {
+      function loadTable(page) {
          $.ajax({
             url: '<?= base_url("ajax_loda_data") ?>',
             type: 'GET',
+            data: {
+               page_no: page
+            },
             success: function(data) {
 
                $("#table_data_inserted").html(data);
@@ -175,11 +187,6 @@
             });
          }
       }
-
-
-
-
-
 
 
 
@@ -305,5 +312,28 @@
             }
          });
       });
+
+
+      // ajax pagination 
+      // function ajaxPagination(page){
+      //    $.ajax({
+      //       url: '<?= base_url("ajax_loda_data") ?>',
+      //       type:'POST',
+      //       data:{page_no: page},
+      //       success:function(data){
+      //          $("#table_data_inserted").html(data);
+      //       }
+      //    })
+      // }
+
+
+
+      // pagination 
+      $(document).on("click", "#pagination li a", function(e) {
+         e.preventDefault();
+         var page_id = $(this).attr("id");
+         // alert(page_id);
+         loadTable(page_id);
+      })
    });
 </script>
