@@ -54,6 +54,7 @@ $route['insert_data'] = 'Test/insertData';
 $route['delelteData'] = 'Test/delelteData';
 $route['getFromValue'] = 'Test/getFromValue';
 $route['updateData'] = 'Test/updateData';
+$route['liveSearch'] = 'Test/liveSearch';
 //end test
 
 $route['404_override'] = '';

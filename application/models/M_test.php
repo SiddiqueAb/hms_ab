@@ -31,4 +31,20 @@ class M_test extends CI_Model
         $this->db->where($p_id_column, $p_id);
         $this->db->update($table, $data);
     }
+
+    public function get_data_multi_conditional($table, $data)
+	{
+		$this->db->where($data);
+		$query = $this->db->get($table);
+		return $query;
+	}
+    public function search_data_multi_conditional($status, $table,  $searchTopics)
+	{
+		$this->db->where($status, '1');
+		$this->db->like("s_name", $searchTopics);
+		$this->db->or_like("s_roll", $searchTopics);
+		$this->db->or_like("s_class", $searchTopics);
+		$query = $this->db->get($table);
+		return $query;
+	}
 }

@@ -117,4 +117,32 @@ class Test extends CI_Controller
             echo 1;
         }
     }
+
+    public function liveSearch()
+    {
+        $searchItem = $this->input->post('search');
+        // $data = $this->M_test->search_data_multi_conditional('student', ["s_name" => $searchItem, "s_roll" => $searchItem, "s_class" => $searchItem]);
+        $data = $this->M_test->search_data_multi_conditional('s_status', 'student', $searchItem);
+        $ajaxFilterData = '';
+        $si = 1;
+
+        if ($this->db->affected_rows() > 0) {
+
+            foreach ($data->result() as $row) {
+
+                $ajaxFilterData .= "<tr>
+                        <td>{$si}</td>
+                        <td>{$row->s_name}</td>                        
+                        <td>{$row->s_roll}</td>                        
+                        <td>{$row->s_class}</td>                        
+                        <td><button type='button' class='btn btn-xs btn-success edit_button' data-eid='{$row->s_id}'>Edit</button></td>                        
+                        <td><button type='button' class='btn btn-xs delete_button btn-danger' data-id='{$row->s_id}'>Delete</button></td>                        
+                        </tr>";
+                $si++;
+            }
+            echo $ajaxFilterData;
+        } else {
+            echo "No Record Found";
+        }
+    }
 }

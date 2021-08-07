@@ -33,8 +33,16 @@
 
       <div class="col-md-6">
          <div class="card card-info mt-3">
-            <div class="card-header">
-               Add Record With Php Ajax
+            <div class="card-header row">
+               <div class="col-sm-6">
+                  Add Record With Php Ajax
+               </div>
+
+
+               <div class="col-sm-6">
+                  <input type="text" id="searchData" class="form-control">
+               </div>
+
             </div>
             <div class="card-body">
 
@@ -269,7 +277,7 @@
             },
             success: function(data) {
 
-              console.log(data);
+               console.log(data);
                if (data == 1) {
                   $('#update_modal').modal('hide');
                   loadTable();
@@ -280,6 +288,22 @@
             }
          })
 
+      });
+
+      // live search 
+      $("#searchData").on('keyup', function(e) {
+
+         var searchItem = $(this).val();
+         $.ajax({
+            url: "<?= base_url('liveSearch') ?>",
+            type: "POST",
+            data: {
+               search: searchItem
+            },
+            success: function(data) {
+               $("#table_data_inserted").html(data);
+            }
+         });
       });
    });
 </script>
