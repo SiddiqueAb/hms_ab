@@ -269,18 +269,14 @@
             },
             success: function(data) {
 
-               console.log(data);
-               // if (data == 1) {
-               //    $('#update_modal').modal('hide');
-               //    loadTable();
-               //    // massege("true", "data Updated Successfull");
-               // } else {
-
-               //    // alert("false", "Data Not Update");
-               // }
-            },
-            error: function(error) {
-               alert("error");
+              console.log(data);
+               if (data == 1) {
+                  $('#update_modal').modal('hide');
+                  loadTable();
+                  massege("true", "data Updated Successfull");
+               } else {
+                  massege("false", "Data Not Update");
+               }
             }
          })
 

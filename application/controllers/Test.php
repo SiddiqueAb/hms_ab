@@ -101,25 +101,20 @@ class Test extends CI_Controller
     public function updateData()
     {
 
-      $id = $this->input->post('id');
-         $studentInfo = array(          
+        $id = $this->input->post('id');
+        $studentInfo = array(
             's_name' => $this->input->post('name2'),
             's_roll' => $this->input->post('roll2'),
             's_class' => $this->input->post('class_c2'),
-            's_update_at' => get_current_time(),
-            's_update_by' => 2,
+            's_updated_at' => get_current_time(),
+            's_updated_by' => 2,
             's_status' => 1
         );
 
-        // print_r($studentInfo);
-        // $this->M_test->updateData('s_id', $id, 'student', $studentInfo);
-        $data = $this->M_test->updateData('s_id', $id, 'student', $studentInfo);
-        echo json_encode($data);
-        // if ($this->M_test->updateData('s_id', $id, 'student', $studentInfo)) {
-        //     echo 1;
-        // } else {
-        //     echo 0;
-        // }
-       
+        if ($this->M_test->updateDataAjax('s_id', $id, 'student', $studentInfo)) {
+            echo 0;
+        } else {
+            echo 1;
+        }
     }
 }

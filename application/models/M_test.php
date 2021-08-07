@@ -26,7 +26,7 @@ class M_test extends CI_Model
         }
     }
 
-    function updateData($p_id_column, $p_id, $table, $data)
+    function updateDataAjax($p_id_column, $p_id, $table, $data)
     {
         $this->db->where($p_id_column, $p_id);
         $this->db->update($table, $data);
