@@ -51,4 +51,6 @@ class Frontend extends CI_Controller
         $this->load->view('admin_view/add_admin_profile');
         $this->load->view('home_view/footer');
     }
+
+   
 }
