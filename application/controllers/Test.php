@@ -203,4 +203,23 @@ class Test extends CI_Controller
             echo "No Record Found";
         }
     }
+
+
+    public function testCookie()
+    {
+        $cookie = array(
+
+            'name'   => 'remember_me',
+            'value'  => 'test',
+            'expire' => '300',
+            'secure' => TRUE
+
+        );
+
+        $this->input->set_cookie($cookie);
+    
+        echo $this->input->cookie('remember_me', true);
+        $this->input->delete_cookie($cookie); 
+        // $this->input->delete('remember_me');
+    }
 }

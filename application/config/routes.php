@@ -55,6 +55,7 @@ $route['delelteData'] = 'Test/delelteData';
 $route['getFromValue'] = 'Test/getFromValue';
 $route['updateData'] = 'Test/updateData';
 $route['liveSearch'] = 'Test/liveSearch';
+$route['testCookie'] = 'Test/testCookie';
 //end test
 
 $route['404_override'] = '';
