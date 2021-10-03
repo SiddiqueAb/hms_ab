@@ -207,19 +207,54 @@ class Test extends CI_Controller
 
     public function testCookie()
     {
-        $cookie = array(
+        // $cookie = array(
 
-            'name'   => 'remember_me',
-            'value'  => 'test',
-            'expire' => '300',
-            'secure' => TRUE
+        //     'name'   => 'remember_me',
+        //     'value'  => 'test',
+        //     'expire' => '300',
+        //     'secure' => TRUE
 
-        );
+        // );
 
-        $this->input->set_cookie($cookie);
-    
-        echo $this->input->cookie('remember_me', true);
-        $this->input->delete_cookie($cookie); 
-        // $this->input->delete('remember_me');
+        // $this->input->set_cookie($cookie);
+
+        // echo $this->input->cookie('remember_me', true);
+        // $this->input->delete_cookie($cookie); 
+        // // $this->input->delete('remember_me');
+
+
+        // $this->benchmark->mark('code_start');
+
+
+
+        // $this->benchmark->mark('code_end');
+        // echo "<br>";
+        // echo $this->benchmark->elapsed_time('code_start', 'code_end');
+
+        $input_number = 20;
+
+        for ($i = $input_number; $i >= 0; $i--) {
+
+           
+            for ($j = 0; $j < $i; $j++) {
+                echo " ";
+                echo "@*";
+            }
+            
+
+            echo "<br>";
+        }
+
+
+
+
+
+
+
+
+
+
+
+        
     }
 }
