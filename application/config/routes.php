@@ -27,6 +27,9 @@ $route['marketing_cost'] = 'backend/manager/Manager/marketingCost';
 $route['another_marketing_cost'] = 'backend/manager/Manager/anotherMarketCost';
 $route['notice_manage'] = 'backend/manager/Manager/noticeManage';
 $route['liveChat'] = 'backend/manager/Manager/liveChat';
+$route['liveChat_ultra'] = 'backend/manager/Manager/liveChat_ultra';
+$route['send_massege'] = 'backend/manager/Manager/send_massege';
+$route['show_massege'] = 'backend/manager/Manager/show_massege';
 
 // reguler user part 
 $route['meal_list'] = 'backend/users/Users/mealInfo';
@@ -55,6 +58,7 @@ $route['delelteData'] = 'Test/delelteData';
 $route['getFromValue'] = 'Test/getFromValue';
 $route['updateData'] = 'Test/updateData';
 $route['liveSearch'] = 'Test/liveSearch';
+$route['testCookie'] = 'Test/testCookie';
 $route['testCookie'] = 'Test/testCookie';
 //end test
 
