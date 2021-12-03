@@ -15,48 +15,81 @@
                         <div class="card-body contacts_body">
                             <ui class="contacts">
                                 <a href="#">
-                                    <li class="active">
-                                        <div class="d-flex bd-highlight">
-                                            <div class="img_cont">
-                                                <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
-                                                <span class="online_icon"></span>
-                                            </div>
-                                            <div class="user_info">
-                                                <span>Khalid</span>
-                                                <p>Kalid is online</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </a>
-                                <li>
-                                    <a href="#">
-                                        <div class="d-flex bd-highlight">
-                                            <div class="img_cont">
-                                                <img src="https://2.bp.blogspot.com/-8ytYF7cfPkQ/WkPe1-rtrcI/AAAAAAAAGqU/FGfTDVgkcIwmOTtjLka51vineFBExJuSACLcBGAs/s320/31.jpg" class="rounded-circle user_img">
-                                                <span class="online_icon offline"></span>
-                                            </div>
-                                            <div class="user_info">
-                                                <span>Taherah Big</span>
-                                                <p>Taherah left 7 mins ago</p>
-                                            </div>
-                                        </div>
-                                    </a>
 
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="d-flex bd-highlight">
-                                            <div class="img_cont">
-                                                <img src="https://i.pinimg.com/originals/ac/b9/90/acb990190ca1ddbb9b20db303375bb58.jpg" class="rounded-circle user_img">
-                                                <span class="online_icon"></span>
+
+
+                                    <?php if ($all_friend) {
+                                        foreach ($all_friend as $row) { ?>
+                                            <li class="">
+                                                <a href="#">
+                                                    <div class="d-flex bd-highlight">
+                                                        <div class="img_cont">
+                                                            <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+
+                                                            <span class="online_icon <?php if ($row->a_active_status == 2) {
+                                                                                            echo "offline";
+                                                                                        } ?>"></span>
+                                                        </div>
+                                                        <div class="user_info">
+                                                            <span><?= $row->a_name; ?></span>
+                                                            <p><?= $row->a_name; ?>  <?php if ($row->a_active_status == 1) {
+                                                                                            echo "is online";
+                                                                                        }else{
+                                                                                            echo "left ".get_current_time()." minute ago";
+                                                                                        } ?></p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                    <?php  }
+                                    } ?>
+
+
+
+                                    <!-- <li class="active">
+                                        <a href="#">
+                                            <div class="d-flex bd-highlight">
+                                                <div class="img_cont">
+                                                    <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+                                                    <span class="online_icon"></span>
+                                                </div>
+                                                <div class="user_info">
+                                                    <span>Khalid</span>
+                                                    <p>Kalid is online</p>
+                                                </div>
                                             </div>
-                                            <div class="user_info">
-                                                <span>Sami Rafi</span>
-                                                <p>Sami is online</p>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">
+                                            <div class="d-flex bd-highlight">
+                                                <div class="img_cont">
+                                                    <img src="https://2.bp.blogspot.com/-8ytYF7cfPkQ/WkPe1-rtrcI/AAAAAAAAGqU/FGfTDVgkcIwmOTtjLka51vineFBExJuSACLcBGAs/s320/31.jpg" class="rounded-circle user_img">
+                                                    <span class="online_icon offline"></span>
+                                                </div>
+                                                <div class="user_info">
+                                                    <span>Taherah Big</span>
+                                                    <p>Taherah left 7 mins ago</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                </li>
+                                        </a>
+
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="d-flex bd-highlight">
+                                                <div class="img_cont">
+                                                    <img src="https://i.pinimg.com/originals/ac/b9/90/acb990190ca1ddbb9b20db303375bb58.jpg" class="rounded-circle user_img">
+                                                    <span class="online_icon"></span>
+                                                </div>
+                                                <div class="user_info">
+                                                    <span>Sami Rafi</span>
+                                                    <p>Sami is online</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li> -->
 
                             </ui>
                         </div>
@@ -72,7 +105,7 @@
                                     <span class="online_icon"></span>
                                 </div>
                                 <div class="user_info">
-                                    <span>Chat with Khalid</span>
+                                    <span><?=$this->session->userData("currentActiveId")?></span>
                                     <p>1767 Messages</p>
                                 </div>
                                 <!-- <div class="video_cam">

@@ -338,7 +338,7 @@ html {
 	background-color: rgba(0, 0, 0, 0.3) !important;
 	border: 0 !important;
 	color: white !important;
-	height: 60px !important;
+	height: 40px !important;
 	overflow-y: auto;
 }
 
@@ -462,6 +462,7 @@ html {
 	background-color: #82ccdd;
 	padding: 10px;
 	position: relative;
+	max-width: 350px;
 }
 
 .msg_cotainer_send {
@@ -472,6 +473,7 @@ html {
 	background-color: #78e08f;
 	padding: 10px;
 	position: relative;
+	max-width: 350px;
 }
 
 .msg_time {

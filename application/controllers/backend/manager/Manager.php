@@ -73,6 +73,7 @@ class Manager extends CI_Controller
     public function liveChat()
     {
         $data = $this->engine->store_nav('livechat', 'livechat', 'সরাসরি মেসেজ করুন');
+        $data["all_friend"]= $this->Common->getData("status", "authority");
         $path = 'backend/manager_part/live_chat_myself';
         $this->engine->render_view($data, $path, $this->side_menu, $this->main_layout);
     }
