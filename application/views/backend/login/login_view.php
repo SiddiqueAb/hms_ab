@@ -70,7 +70,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <!-- <button type="submit" class="fxt-btn-fill">Log in</button> -->
+                                    <button type="submit" class="fxt-btn-fill">Log in</button>
                                     <button class="btn btn-info" onclick="auto_login.number.value = '01674514499';auto_login.password.value = '123456'; auto_sign_in()">Manager</button>
                                     <button class="btn btn-info" onclick="auto_login.number.value = '01780805503';auto_login.password.value = '123456'; auto_sign_in()">Administrator</button>
                                     <button class="btn btn-info" onclick="auto_login.number.value = '01780805504';auto_login.password.value = '123456'; auto_sign_in()">User</button>

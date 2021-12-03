@@ -73,7 +73,7 @@ class Manager extends CI_Controller
     public function liveChat()
     {
         $data = $this->engine->store_nav('livechat', 'livechat', 'সরাসরি মেসেজ করুন');
-        $data["all_friend"]= $this->Common->getData("status", "authority");
+        $data["all_friend"] = $this->Common->getData("status", "authority");
         $path = 'backend/manager_part/live_chat_myself';
         $this->engine->render_view($data, $path, $this->side_menu, $this->main_layout);
     }
@@ -105,19 +105,71 @@ class Manager extends CI_Controller
                         <!-- <span class="msg_time_send">9:10 AM, Today</span> -->
                     </div>
                     <div class="img_cont_msg">
-                        <img src="https://2.bp.blogspot.com/-8ytYF7cfPkQ/WkPe1-rtrcI/AAAAAAAAGqU/FGfTDVgkcIwmOTtjLka51vineFBExJuSACLcBGAs/s320/31.jpg" class="rounded-circle user_img_msg">
+                        <img src="assets/uploads/profile_pic/31.jpg" class="rounded-circle user_img_msg">
                     </div>
                 </div>
                 <div class="d-flex justify-content-start mb-4">
                     <div class="img_cont_msg">
-                        <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
+                        <img src="assets/uploads/image/logo/logo.png" class="rounded-circle user_img_msg">
                     </div>
                     <div class="msg_cotainer">
                         <?= $row->m_title ?>
                         <!-- <span class="msg_time">9:12 AM, Today</span> -->
                     </div>
                 </div>
-<?php }
+        <?php }
         }
     }
+
+
+
+
+    public function id_wise_data_show()
+    { 
+        $user = $this->input->post("user_id");
+        $name = $this->Common->get_row_data_multi_conditional(["id"=>$user], "authority");
+        ?>
+        <div class="card-header msg_head">
+            <div class="d-flex bd-highlight">
+                <div class="img_cont">
+                    <img src="assets/uploads/image/logo/logo.png" class="rounded-circle user_img">
+                    <span class="online_icon"></span>
+                </div>
+                <div class="user_info">
+                    <span><?=$name->a_name;?></span>
+                    <p>1767 Messages</p>
+                </div>
+                <!-- <div class="video_cam">
+                                    <span><i class="fas fa-video"></i></span>
+                                    <span><i class="fas fa-phone"></i></span>
+                                </div> -->
+            </div>
+            <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
+            <div class="action_menu">
+                <ul>
+                    <li><i class="fas fa-user-circle"></i> View profile</li>
+                    <li><i class="fas fa-users"></i> Add to close friends</li>
+                    <li><i class="fas fa-plus"></i> Add to group</li>
+                    <li><i class="fas fa-ban"></i> Block</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card-body msg_card_body" id="massage_card_body">
+
+
+        </div>
+        <div class="card-footer">
+            <form role="form" action="<?= base_url("message_send") ?>" method="post">
+                <div class="input-group">
+                    <div class="input-group-append">
+                        <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
+                    </div>
+                    <textarea name="" id="messege_input" class="form-control type_msg" placeholder="Type your message..."></textarea>
+                    <div class="input-group-append">
+                        <span class="input-group-text send_btn" id="send_btn"><i class="fas fa-location-arrow"></i></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+<?php }
 }

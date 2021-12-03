@@ -30,6 +30,7 @@ $route['liveChat'] = 'backend/manager/Manager/liveChat';
 $route['liveChat_ultra'] = 'backend/manager/Manager/liveChat_ultra';
 $route['send_massege'] = 'backend/manager/Manager/send_massege';
 $route['show_massege'] = 'backend/manager/Manager/show_massege';
+$route['id_wise_data_show'] = 'backend/manager/Manager/id_wise_data_show';
 
 // reguler user part 
 $route['meal_list'] = 'backend/users/Users/mealInfo';
