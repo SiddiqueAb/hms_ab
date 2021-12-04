@@ -139,10 +139,10 @@ class Manager extends CI_Controller
                     <span><?=$name->a_name;?></span>
                     <p>1767 Messages</p>
                 </div>
-                <!-- <div class="video_cam">
+                <div class="video_cam">
                                     <span><i class="fas fa-video"></i></span>
                                     <span><i class="fas fa-phone"></i></span>
-                                </div> -->
+                                </div>
             </div>
             <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
             <div class="action_menu">

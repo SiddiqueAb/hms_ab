@@ -71,9 +71,9 @@
 <script>
     $(document).ready(function() {
 
-        $("#massage_card_body").animate({
-            scrollTop: "3000px"
-        });
+        // $("#massage_card_body").animate({
+        //     scrollTop: "3000px"
+        // });
         show_message();
 
         function show_message() {
