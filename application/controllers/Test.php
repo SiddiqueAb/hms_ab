@@ -235,16 +235,33 @@ class Test extends CI_Controller
 
         for ($i = $input_number; $i >= 0; $i--) {
 
-           
+
             for ($j = 0; $j < $i; $j++) {
                 echo " ";
                 echo "@*";
             }
-            
+
 
             echo "<br>";
         }
+    }
 
+    public function trello()
+    {
+        $data = $this->engine->store_nav('reports', 'c_d_report', 'Clinical Dashboard Report');
 
+        $path = 'trello';
+        $data["get_colum"] = $this->Common->get_data_multi_conditional("trello_colum", []);
+        // x_debug($data["get_colum"]->result());
+        // $colum["get_colum"] = $this->Common-> multipleJoinTableGroupBy("trello_colum","tc_id", "trello", $idPrimaryKey, $data, $group_colum);
+        // $this->side_menu = 'backend/authority/super_admin/side_menu';
+        $this->engine->render_view($data, $path, $this->side_menu, $this->main_layout);
+    }
+    public function trello_colum_update()
+    {
+        $row_id = $this->input->post('row_id');
+        $colum_id = $this->input->post('colum_id');
+        
+        $this->Common->update_data('trello', 't_id', $row_id , ['t_colum_id'=>$colum_id]);
     }
 }
