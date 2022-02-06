@@ -93,7 +93,7 @@
         $(".column").sortable({
             connectWith: ".column",
             cursor: "pointer",
-            // revert: true,
+            revert: true,
             scroll: true,
             scrollSpeed: 10,
             // tolerance: "intersect",
