@@ -261,7 +261,10 @@ class Test extends CI_Controller
     {
         $row_id = $this->input->post('row_id');
         $colum_id = $this->input->post('colum_id');
-        
-        $this->Common->update_data('trello', 't_id', $row_id , ['t_colum_id'=>$colum_id]);
+
+        // x_debug($this->input->post("dataArray"));
+        foreach ($this->input->post("dataArray") as $key) {
+            $this->Common->update_data('trello', 't_id', $key["id"], ['t_row_position' => $key["position"], "t_colum_id" => $key["colum"]]);
+        }
     }
 }
