@@ -248,23 +248,19 @@ class Test extends CI_Controller
 
     public function trello()
     {
-        $data = $this->engine->store_nav('reports', 'c_d_report', 'Clinical Dashboard Report');
-
+        $data = $this->engine->store_nav('reports', 'c_d_report', 'Trello managment');
         $path = 'trello';
         $data["get_colum"] = $this->Common->get_data_multi_conditional("trello_colum", []);
-        // x_debug($data["get_colum"]->result());
-        // $colum["get_colum"] = $this->Common-> multipleJoinTableGroupBy("trello_colum","tc_id", "trello", $idPrimaryKey, $data, $group_colum);
-        // $this->side_menu = 'backend/authority/super_admin/side_menu';
         $this->engine->render_view($data, $path, $this->side_menu, $this->main_layout);
     }
     public function trello_colum_update()
     {
-        $row_id = $this->input->post('row_id');
-        $colum_id = $this->input->post('colum_id');
-
-        // x_debug($this->input->post("dataArray"));
         foreach ($this->input->post("dataArray") as $key) {
             $this->Common->update_data('trello', 't_id', $key["id"], ['t_row_position' => $key["position"], "t_colum_id" => $key["colum"]]);
         }
+    }
+    public function colum_name_update()
+    {
+        $this->Common->update_data('trello_colum', 'tc_id', $this->input->post("colum_id"), ['tc_name' => $this->input->post("content")]);
     }
 }
