@@ -83,6 +83,7 @@
             },
             update: function(e, ui) {
                 var dataArray = [];
+                // console.log($(this).children());
                 $(".column .child_colum .portlet").each(function(index, val) {
                     dataArray.push({
                         id: $(this).attr("data-id"),
@@ -97,9 +98,11 @@
                         dataArray
                     },
                     success: function(data_updated) {
-                        console.log("hi");
+                       
                     }
                 })
+
+                
             }
         }).disableSelection();
 
