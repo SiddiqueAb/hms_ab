@@ -1,12 +1,4 @@
 <style>
-    .column_on_hover {
-        transform: rotate(10deg);
-    }
-
-    .grid_parent {
-        width: 350px !important;
-    }
-
     .total {
         display: -webkit-box;
         overflow-x: auto;
@@ -17,26 +9,6 @@
 
     .ui-state-highlight {
         background-image: url('<?php echo base_url("assets/uploads/image/agun.gif") ?>');
-    }
-
-    .column {
-        height: 930px;
-        overflow-y: auto;
-    }
-
-    .child_colum {
-        background-color: #92a19f;
-        border: 10px solid #92a19f;
-    }
-
-    .bg-info,
-    .bg-lightblue {
-        background-color: #2d4548 !important;
-    }
-
-    [contenteditable]:focus {
-        outline: 3px solid white;
-        padding: 4px;
     }
 </style>
 <div class="content-wrapper">
@@ -144,11 +116,11 @@
             type: "POST",
             url: '<?= base_url("Test/colum_name_update") ?>',
             data: {
-                colum_id:colum_id,
-                content:content,
+                colum_id: colum_id,
+                content: content,
             },
             success: function(data_updated) {
-                // console.log("hi");
+                // $("[contenteditable]").focusout();
             }
         })
     })
