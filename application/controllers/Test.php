@@ -263,4 +263,29 @@ class Test extends CI_Controller
     {
         $this->Common->update_data('trello_colum', 'tc_id', $this->input->post("colum_id"), ['tc_name' => $this->input->post("content")]);
     }
+
+
+    public function cookie()
+    {
+        // $cookie_name = "user";
+        // $info = [1,3,34,35,3,53];
+        // setcookie($cookie_name, json_encode($info) + (86400 * 30), "/");
+
+        // // echo $_COOKIE[$cookie_name];
+        // // echo $_COOKIE["user"];
+        // x_debug($_COOKIE);
+        $this->load->helper('cookie');
+        echo get_cookie("ab");
+        set_cookie("ab", "bc", "10");
+       echo get_cookie("ab");
+    }
+
+    public function work_with_cli($hi)
+    {
+        // echo "hello";
+        for ($i=0; $i < 10; $i++) { 
+            echo "Amar sonar bangla ami tomar - ".$i.PHP_EOL.$hi;
+            // echo "<br>";
+        }
+    }
 }
