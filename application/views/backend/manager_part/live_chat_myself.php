@@ -15,7 +15,7 @@
                         <div class="card-body contacts_body">
                             <ui class="contacts">
                                 <?php if ($all_friend) {
-                                    foreach ($all_friend as $row) { ?>
+                                    foreach ($all_friend->result() as $row) { ?>
                                         <li class="user_wise_masg" data-user_id=<?= $row->id ?>>
                                             <a href="#">
                                                 <div class="d-flex bd-highlight">

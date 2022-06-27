@@ -3,258 +3,278 @@
 class Common extends CI_Model
 {
 
-  public function set_data($table, $data)
-  {
-    $this->db->trans_start();
-    $this->db->insert($table, $data);
-    $returnValue = $this->db->insert_id();
-    $this->db->trans_complete();
-    if ($this->db->trans_status() === FALSE) {
-      $error = $this->db->error();
-      print_r($error);
-    } else {
-      return $returnValue;
-    }
-  }
+	public function set_data($table, $data)
+	{
+		$this->db->trans_start();
+		$this->db->insert($table, $data);
+		$returnValue = $this->db->insert_id();
+		$this->db->trans_complete();
+		if ($this->db->trans_status() === FALSE) {
+			$error = $this->db->error();
+			print_r($error);
+		} else {
+			return $returnValue;
+		}
+	}
 
 
-  public function get_data_multi_conditional($table, $data)
-  {
-    $this->db->where($data);
-    $query = $this->db->get($table);
-    return $query;
-  }
+	public function get_data_multi_conditional($table, $data)
+	{
+		$this->db->where($data);
+		$query = $this->db->get($table);
+		if ($this->db->affected_rows() > 0) {
+			return $query;
+		} else {
+			return FALSE;
+		}
+	}
 
-  public function get_data_multi_conditional_order($table, $data, $colum_name, $orderd)
-  {
-    $this->db->where($data);
-    $this->db->order_by($colum_name, $orderd);
-    $query = $this->db->get($table);
-    return $query;
-  }
+	public function get_data_multi_conditional_order($table, $data, $colum_name, $orderd)
+	{
+		$this->db->where($data);
+		$this->db->order_by($colum_name, $orderd);
+		$query = $this->db->get($table);
+		if ($this->db->affected_rows() > 0) {
+			return $query;
+		} else {
+			return FALSE;
+		}
+	}
 
-  public function get_distinct_data_multi_conditional($id, $table, $data)
-  {
-    $this->db->distinct();
-    $this->db->select($id);
-    $this->db->where($data);
-    $query = $this->db->get($table);
-    return $query;
-  }
+	public function get_distinct_data_multi_conditional($id, $table, $data)
+	{
+		$this->db->distinct();
+		$this->db->select($id);
+		$this->db->where($data);
+		$query = $this->db->get($table);
+		if ($this->db->affected_rows() > 0) {
+			return $query;
+		} else {
+			return FALSE;
+		}
+	}
 
-  public function get_data_multi_conditional_group_by($table, $data, $group_colum)
-  {
-    $this->db->where($data);
-    $this->db->group_by($group_colum);
-    $query = $this->db->get($table);
-    return $query;
-  }
+	public function get_data_multi_conditional_group_by($table, $data, $group_colum)
+	{
+		$this->db->where($data);
+		$this->db->group_by($group_colum);
+		$query = $this->db->get($table);
+		if ($this->db->affected_rows() > 0) {
+			return $query;
+		} else {
+			return FALSE;
+		}
+	}
 
-  public function get_data_multi_conditional_pag($table, $data, $limit, $offset)
-  {
-    $this->db->where($data);
-    $this->db->limit($limit, $offset);
-    $query = $this->db->get($table);
-    return $query;
-  }
+	public function get_data_multi_conditional_pag($table, $data, $limit, $offset)
+	{
+		$this->db->where($data);
+		$this->db->limit($limit, $offset);
+		$query = $this->db->get($table);
+		if ($this->db->affected_rows() > 0) {
+			return $query;
+		} else {
+			return FALSE;
+		}
+	}
 
-  public function get_data_single_conditional($table, $index, $data)
-  {
-    $this->db->where($index, $data);
-    $query = $this->db->get($table);
-    return $query;
-  }
-
-
-  public function get_single_row_information($table, $index, $data)
-  {
-    $this->db->where($index, $data);
-    $query = $this->db->get($table);
-    if ($this->db->affected_rows() > 0) {
-      return $query->row();
-    } else {
-      return FALSE;
-    }
-  }
-
-  public function get_data_multi_conditional_mod($table, $data)
-  {
-    $this->db->where($data);
-    $query = $this->db->get($table);
-    if ($this->db->affected_rows() > 0) {
-      return $query;
-    } else {
-      return FALSE;
-    }
-  }
-  public function get_single_row_information_multi_condition($table, $data)
-  {
-    $this->db->where($data);
-    $query = $this->db->get($table);
-    if ($this->db->affected_rows() > 0) {
-      return $query->row();
-    } else {
-      return FALSE;
-    }
-  }
+	public function get_data_single_conditional($table, $index, $data)
+	{
+		$this->db->where($index, $data);
+		$query = $this->db->get($table);
+		return $query;
+	}
 
 
-  function delete_data($table, $index, $data)
-  {
-    $this->db->where($index, $data);
-    $this->db->delete($table);
+	public function get_single_row_information($table, $index, $data)
+	{
+		$this->db->where($index, $data);
+		$query = $this->db->get($table);
+		if ($this->db->affected_rows() > 0) {
+			return $query->row();
+		} else {
+			return FALSE;
+		}
+	}
 
-    if ($this->db->affected_rows() > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-
-  public function update_data($table, $index, $identifier, $data)
-  {
-    $this->db->where($index, $identifier);
-    $this->db->update($table, $data);
-    if ($this->db->affected_rows() > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  function pegination_count($table, $index, $identifier)
-  {
-    $this->db->where($index, $identifier);
-    $query = $this->db->get($table);
-    $rowcount = $query->num_rows();
-    return $rowcount;
-  }
-
-  public function count_data($table, $index, $data)
-  {
-    $this->db->where($index, $data);
-    $this->db->get($table);
-    if ($this->db->affected_rows() > 0) {
-      return $this->db->affected_rows();
-    } else {
-      return 0;
-    }
-  }
-  public function count_data_multi_conditional($table, $data)
-  {
-    $this->db->where($data);
-    $this->db->get($table);
-    if ($this->db->affected_rows() > 0) {
-      return $this->db->affected_rows();
-    } else {
-      return 0;
-    }
-  }
+	public function get_data_multi_conditional_mod($table, $data)
+	{
+		$this->db->where($data);
+		$query = $this->db->get($table);
+		if ($this->db->affected_rows() > 0) {
+			return $query;
+		} else {
+			return FALSE;
+		}
+	}
+	public function get_single_row_information_multi_condition($table, $data)
+	{
+		$this->db->where($data);
+		$query = $this->db->get($table);
+		if ($this->db->affected_rows() > 0) {
+			return $query->row();
+		} else {
+			return FALSE;
+		}
+	}
 
 
+	function delete_data($table, $index, $data)
+	{
+		$this->db->where($index, $data);
+		$this->db->delete($table);
 
-  public function sql_excute($sql)
-  {
-    $query = $this->db->query($sql);
-    return $query;
-  }
-
-
-  public function multipleJoinTable($titleTableName, $titlePrimaryKey, $idTableName, $idPrimaryKey, $data)
-  {
-    $this->db->join($titleTableName, $titleTableName . "." . $titlePrimaryKey . '=' . $idTableName . "." . $idPrimaryKey);
-    $this->db->where($data);
-    $query = $this->db->get($idTableName);
-    if ($this->db->affected_rows() > 0) {
-      return $query;
-    } else {
-      return FALSE;
-    }
-  }
-  public function multipleJoinTableGroupBy($titleTableName, $titlePrimaryKey, $idTableName, $idPrimaryKey, $data, $group_colum)
-  {
-    $this->db->join($titleTableName, $titleTableName . "." . $titlePrimaryKey . '=' . $idTableName . "." . $idPrimaryKey);
-    $this->db->where($data);
-    $this->db->group_by($group_colum);
-    $query = $this->db->get($idTableName);
-    if ($this->db->affected_rows() > 0) {
-      return $query;
-    } else {
-      return FALSE;
-    }
-  }
-
-  public function multipleJoinTableGroupByMultiple($titleTableName, $titlePrimaryKey, $idTableName, $idPrimaryKey, $data)
-  {
-    $this->db->join($titleTableName, $titleTableName . "." . $titlePrimaryKey . '=' . $idTableName . "." . $idPrimaryKey);
-    $this->db->where($data);
-    $this->db->group_by(array("ip_invoice_photoprapher_id"));
-    $query = $this->db->get($idTableName);
-    if ($this->db->affected_rows() > 0) {
-      return $query;
-    } else {
-      return FALSE;
-    }
-  }
-
-  public function getSumColum($table, $columName, $data)
-  {
-    $this->db->select_sum($columName);
-    $this->db->where($data);
-    $query = $this->db->get($table);
-    if ($this->db->affected_rows() > 0) {
-      if ($query->row()->$columName) {
-        return $query->row()->$columName;
-      } else {
-        return 0;
-      }
-    } else {
-      return FALSE;
-    }
-  }
-  public function getSumColum_join($table_1, $table_1_primary_id, $table_2, $table_2_primary_id, $columName, $data)
-  {
-    $this->db->select_sum($columName);
-    $this->db->join($table_2, $table_2 . "." . $table_2_primary_id . '=' . $table_1 . "." . $table_1_primary_id);
-    $this->db->where($data);
-    $query = $this->db->get($table_1);
-    if ($this->db->affected_rows() > 0) {
-
-      if ($query->row()->$columName) {
-        return $query->row()->$columName;
-      } else {
-        return 0;
-      }
-    } else {
-      return FALSE;
-    }
-  }
+		if ($this->db->affected_rows() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 
-  function getDataMultipleCondition_like($data, $like_data, $table)
-  {
-    $this->db->where($data);
-    $this->db->like($like_data);
-    return $this->db->get($table);
-  }
-  function getDataMultipleCondition_where_in($client_id, $data, $table, $condition)
-  {
-    $this->db->where_in($client_id, $data);
-    $this->db->where($condition);
-    return $this->db->get($table);
-  }
+	public function update_data($table, $index, $identifier, $data)
+	{
+		$this->db->where($index, $identifier);
+		$this->db->update($table, $data);
+		if ($this->db->affected_rows() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-  public function tripleJoinTable($table1, $table1_primary_id, $table_2, $table_2_primary_id, $table_3, $table_3_primary_id, $data)
-  {
-    $this->db->join($table1, $table1 . "." . $table1_primary_id . '=' . $table_2 . "." . $table_2_primary_id);
-    $this->db->join($table_3, $table_3 . "." . $table_3_primary_id . '=' . $table1 . "." . $table1_primary_id);
-    $this->db->where($data);
-    $query = $this->db->get($table_2);
-    if ($this->db->affected_rows() > 0) {
-      return $query;
-    } else {
-      return FALSE;
-    }
-  }
+	function pegination_count($table, $index, $identifier)
+	{
+		$this->db->where($index, $identifier);
+		$query = $this->db->get($table);
+		$rowcount = $query->num_rows();
+		return $rowcount;
+	}
+
+	public function count_data($table, $index, $data)
+	{
+		$this->db->where($index, $data);
+		$this->db->get($table);
+		if ($this->db->affected_rows() > 0) {
+			return $this->db->affected_rows();
+		} else {
+			return 0;
+		}
+	}
+	public function count_data_multi_conditional($table, $data)
+	{
+		$this->db->where($data);
+		$this->db->get($table);
+		if ($this->db->affected_rows() > 0) {
+			return $this->db->affected_rows();
+		} else {
+			return 0;
+		}
+	}
+
+
+
+	public function sql_excute($sql)
+	{
+		$query = $this->db->query($sql);
+		return $query;
+	}
+
+
+	public function multipleJoinTable($titleTableName, $titlePrimaryKey, $idTableName, $idPrimaryKey, $data)
+	{
+		$this->db->join($titleTableName, $titleTableName . "." . $titlePrimaryKey . '=' . $idTableName . "." . $idPrimaryKey);
+		$this->db->where($data);
+		$query = $this->db->get($idTableName);
+		if ($this->db->affected_rows() > 0) {
+			return $query;
+		} else {
+			return FALSE;
+		}
+	}
+	public function multipleJoinTableGroupBy($titleTableName, $titlePrimaryKey, $idTableName, $idPrimaryKey, $data, $group_colum)
+	{
+		$this->db->join($titleTableName, $titleTableName . "." . $titlePrimaryKey . '=' . $idTableName . "." . $idPrimaryKey);
+		$this->db->where($data);
+		$this->db->group_by($group_colum);
+		$query = $this->db->get($idTableName);
+		if ($this->db->affected_rows() > 0) {
+			return $query;
+		} else {
+			return FALSE;
+		}
+	}
+
+	public function multipleJoinTableGroupByMultiple($titleTableName, $titlePrimaryKey, $idTableName, $idPrimaryKey, $data)
+	{
+		$this->db->join($titleTableName, $titleTableName . "." . $titlePrimaryKey . '=' . $idTableName . "." . $idPrimaryKey);
+		$this->db->where($data);
+		$this->db->group_by(array("ip_invoice_photoprapher_id"));
+		$query = $this->db->get($idTableName);
+		if ($this->db->affected_rows() > 0) {
+			return $query;
+		} else {
+			return FALSE;
+		}
+	}
+
+	public function getSumColum($table, $columName, $data)
+	{
+		$this->db->select_sum($columName);
+		$this->db->where($data);
+		$query = $this->db->get($table);
+		if ($this->db->affected_rows() > 0) {
+			if ($query->row()->$columName) {
+				return $query->row()->$columName;
+			} else {
+				return 0;
+			}
+		} else {
+			return FALSE;
+		}
+	}
+	public function getSumColum_join($table_1, $table_1_primary_id, $table_2, $table_2_primary_id, $columName, $data)
+	{
+		$this->db->select_sum($columName);
+		$this->db->join($table_2, $table_2 . "." . $table_2_primary_id . '=' . $table_1 . "." . $table_1_primary_id);
+		$this->db->where($data);
+		$query = $this->db->get($table_1);
+		if ($this->db->affected_rows() > 0) {
+
+			if ($query->row()->$columName) {
+				return $query->row()->$columName;
+			} else {
+				return 0;
+			}
+		} else {
+			return FALSE;
+		}
+	}
+
+
+	function getDataMultipleCondition_like($data, $like_data, $table)
+	{
+		$this->db->where($data);
+		$this->db->like($like_data);
+		return $this->db->get($table);
+	}
+	function getDataMultipleCondition_where_in($client_id, $data, $table, $condition)
+	{
+		$this->db->where_in($client_id, $data);
+		$this->db->where($condition);
+		return $this->db->get($table);
+	}
+
+	public function tripleJoinTable($table1, $table1_primary_id, $table_2, $table_2_primary_id, $table_3, $table_3_primary_id, $data)
+	{
+		$this->db->join($table1, $table1 . "." . $table1_primary_id . '=' . $table_2 . "." . $table_2_primary_id);
+		$this->db->join($table_3, $table_3 . "." . $table_3_primary_id . '=' . $table1 . "." . $table1_primary_id);
+		$this->db->where($data);
+		$query = $this->db->get($table_2);
+		if ($this->db->affected_rows() > 0) {
+			return $query;
+		} else {
+			return FALSE;
+		}
+	}
 }
